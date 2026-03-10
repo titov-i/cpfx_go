@@ -122,13 +122,12 @@ func readPassword() string {
 }
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Как использовать: ./program <файл PFX>")
+	if len(os.Args) < 3 {
+		fmt.Println("Как использовать: ./program <файл PFX> <пароль>")
 		os.Exit(0)
 	}
 	fmt.Println("CryptoPro PFX Decoder by li0ard (Go version)")
-	fmt.Printf("Введите пароль: ")
-	PASS := readPassword()
+	PASS := os.Args[2]
 	fmt.Println("")
 	bin, _ := readBinFile(os.Args[1])
 	pfx, _ := getKeybags(bin)

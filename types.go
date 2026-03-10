@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/x509/pkix"
 	"encoding/asn1"
+	"fmt"
 )
 
 type keyBlob struct {
@@ -103,6 +104,7 @@ func getKeybags(bin []byte) (bags []safeBag, err error) {
 	oidEncryptedDataContentType := asn1.ObjectIdentifier([]int{1, 2, 840, 113549, 1, 7, 6})
 
 	asn1.Unmarshal(bin, &pfx)
+	fmt.Printf("PFX Version detected: %d\n", pfx.Version)
 	if pfx.Version != 3 {
 		panic("can only decode v3 PFX PDU's")
 	}
